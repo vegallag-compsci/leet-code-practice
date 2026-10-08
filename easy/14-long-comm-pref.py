@@ -22,10 +22,10 @@ Constraints:
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
         longest = ""
-        if len(strs) == 0: return longest
-        if len(strs) == 1:
-            longest += strs[0]
+        if len(strs) == 0: 
             return longest
+        elif len(strs) == 1:
+            return strs[0]
         
         for i in range(len(strs[0])):
             # loops thru every char in first word
