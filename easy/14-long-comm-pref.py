@@ -21,14 +21,26 @@ Constraints:
 
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
-        x = ""
-        y = 0
-        for char in strs[0]:
-            if char == strs[1][y] and char == strs[2][y]:
-                x += char
-            else:
-                return x
-            y += 1
+        longest = ""
+        if len(strs) == 0: 
+            return longest
+        elif len(strs) == 1:
+            return strs[0]
+        
+        for i in range(len(strs[0])):
+            # loops thru every char in first word
+            char = strs[0][i]
+            for z in range(len(strs)):
+                # loops thru entire rest of list
+                if i > len(strs[z]) - 1:
+                    return longest
+                if strs[z][i] == char:
+                    if z == len(strs) - 1:
+                        longest += char
+                    continue
+                else:
+                    return longest
+        return longest
             
 
 sol = Solution()
