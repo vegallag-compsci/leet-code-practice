@@ -21,11 +21,18 @@ Constraints:
 
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
-        for word in strs:
-            print(word)
+        x = ""
+        y = 0
+        for char in strs[0]:
+            if char == strs[1][y] and char == strs[2][y]:
+                x += char
+            else:
+                return x
+            y += 1
+            
 
 sol = Solution()
-test_strs = ["flower", "flow", "flight"]
+test_strs = ["flower", "flow", "flowght"]
 
 
 result = sol.longestCommonPrefix(test_strs)
