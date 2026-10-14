@@ -16,34 +16,27 @@ Output: true
 class Solution:
     def exist(self, board: list[list[str]], word: str) -> bool:
         # isTouching() 
-        letters_found = ""
-        found = 0
-        last_row = 0
-        last_col = 0
+        total_rows = len(board)
+        total_cols = len(board[0])
+        prog = 0
+        track = ""
+        row_l, col_l = 0,0
 
-        for i, row in enumerate(board):
-            for char in range(len(row)):
-                row_num = i
-                row_index = char
-                row_letter = row[char]
+        for row in range(rows):
+            for col in range(cols):
+                curr_letter = board[row][col]
+                if curr_letter == word[prog]:
+                    print(f"'{curr_letter}' is at {row, col}")
+                    if row + 1 < len(total_rows):
+                        if
+                    if row - 1 >= 0:
 
-                if row_letter in word and row_letter not in letters_found:
-                    if found == 0:
-                        letters_found += row_letter
-                        found += 1
-                        last_row = row_num
-                        last_col = row_index
-                        print('Found: '+str(found), 'Last_Row: '+str(last_row), 'Last_Col: '+str(last_col))
-                    else:
-                        if row_num == last_row + 1 or last_row - 1:
-                            if  row_index == last_col + 1 or last_col - 1:
-                                letters_found += row_letter
-                                found += 1
-                                last_row = row_num
-                                last_col = row_index
-                                print('Found: '+str(found), 'Last_Row: '+str(last_row), 'Last_Col: '+str(last_col))        
-        
-        if found == len(word):
+                    if col + 1 < len(total_cols):
+
+                    if col - 1 >= 0:
+
+
+        if prog == word:
             return True
         else:
             return False
