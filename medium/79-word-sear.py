@@ -19,12 +19,15 @@ class Solution:
         last_row = 0
         last_col = 0
 
-        for row in range(len(board)):
+        # add all chars & coords (row,col) to dictionary 'dicti'
+        for row in range(len(board)): 
             for col in range(len(board[0])):
                 curr_letter = board[row][col]
                 if curr_letter in word:
                     dicti[curr_letter] = (row, col)
 
+        # check every char's placement and make sure it's touching the last
+        # row and col (abs() == 1)
         for i, char in enumerate(word):
             row, col = dicti[char]
             # Debug
@@ -33,11 +36,11 @@ class Solution:
                 last_row = row
                 last_col = col
                 continue
-            if abs((row + col) - (last_row + last_col)) == 1:
+            if abs((row + col) - (last_row + last_col)) == 1 and not i == 0:
                 last_row = row
                 last_col = col
                 continue
-            else:
+            elif not abs((row + col) - (last_row + last_col)) == 1:
                 return False
 
         return True
@@ -46,7 +49,15 @@ class Solution:
 
 
 sol = Solution()
-result = sol.exist([["A", "B", "C"],
-                    ["D", "E", "F"],
-                    ["G", "H", "I"]], "ADGHIFCB")
+table1 = [["A", "B", "C"],
+          ["D", "E", "F"],
+          ["G", "H", "I"]]
+table2 = [["A", "B", "C", "D"],
+          ["E", "F", "G", "H"],
+          ["I", "J", "K", "L"]]
+# table 1 (true: ADGHIFCBA)
+# table 2 (false: ADEFH)
+# table 2 (true: ABFGH)
+# table 2 (false: ABFJG)
+result = sol.exist(table1, "ADEFH")
 print("Result:", result)
