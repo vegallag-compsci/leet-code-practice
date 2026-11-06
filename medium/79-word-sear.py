@@ -15,37 +15,49 @@ Output: true
 
 class Solution:
     def exist(self, board: list[list[str]], word: str) -> bool:
-        # isTouching() 
-        total_rows = len(board)
-        total_cols = len(board[0])
-        prog = 0
-        track = ""
-        row_l, col_l = 0,0
+        dicti = {}
+        last_row = 0
+        last_col = 0
 
-        for row in range(rows):
-            for col in range(cols):
+        # add all chars & coords (row,col) to dictionary 'dicti'
+        for row in range(len(board)): 
+            for col in range(len(board[0])):
                 curr_letter = board[row][col]
-                if curr_letter == word[prog]:
-                    print(f"'{curr_letter}' is at {row, col}")
-                    if row + 1 < len(total_rows):
-                        if
-                    if row - 1 >= 0:
+                if curr_letter in word:
+                    dicti[curr_letter] = (row, col)
 
-                    if col + 1 < len(total_cols):
+        # check every char's placement and make sure it's touching the last
+        # row and col (abs() == 1)
+        for i, char in enumerate(word):
+            row, col = dicti[char]
+            # Debug
+            print(f"({char}) at {row, col}, {abs((row + col) - (last_row + last_col))}")
+            if i == 0:
+                last_row = row
+                last_col = col
+                continue
+            if abs((row + col) - (last_row + last_col)) == 1 and not i == 0:
+                last_row = row
+                last_col = col
+                continue
+            elif not abs((row + col) - (last_row + last_col)) == 1:
+                return False
 
-                    if col - 1 >= 0:
-
-
-        if prog == word:
-            return True
-        else:
-            return False
+        return True
 
         
 
 
 sol = Solution()
-result = sol.exist([["A", "B", "C"],
-                    ["D", "E", "F"],
-                    ["G", "H", "I"]], "ADGHI")
+table1 = [["A", "B", "C"],
+          ["D", "E", "F"],
+          ["G", "H", "I"]]
+table2 = [["A", "B", "C", "D"],
+          ["E", "F", "G", "H"],
+          ["I", "J", "K", "L"]]
+# table 1 (true: ADGHIFCBA)
+# table 2 (false: ADEFH)
+# table 2 (true: ABFGH)
+# table 2 (false: ABFJG)
+result = sol.exist(table1, "ADEFH")
 print("Result:", result)
