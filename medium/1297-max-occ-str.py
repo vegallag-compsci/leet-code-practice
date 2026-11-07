@@ -27,16 +27,22 @@ class Solution:
         # 2) size of substr must (minSize <= k <= maxSize)
 
         # Generate all substrings of length minSize
+        # For each substring, check if it has at most 'maxLetters' unique chars
         subs = []
         for i in range(len(s) - minSize + 1):
-            subs.append(s[i:i+minSize])
+            if len(set(sub := s[i:i + minSize])) <= maxLetters:
+                subs.append(s[i:i+minSize])
         print(subs)
-        # For each substring, check if it has at most 'maxLetters' unique chars
         
         # Count the freq of valid substrings using a hash table
+        counts = Counter(subs) # Counter({'aab': 2, 'aba': 1, 'bab': 1, 'caa': 1})
 
         # Return the max freq found
-        return 1
+        # If empty, return 0
+        if len(counts) > 0:
+            return max(counts.values())
+        else:
+            return 0
 
 
 sol = Solution()
