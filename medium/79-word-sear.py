@@ -26,6 +26,7 @@ class Solution:
                 if curr_letter in word:
                     dicti[curr_letter] = (row, col)
 
+        print(dicti)
         # check every char's placement and make sure it's touching the last
         # row and col (abs() == 1)
         for i, char in enumerate(word):
@@ -52,12 +53,12 @@ sol = Solution()
 table1 = [["A", "B", "C"],
           ["D", "E", "F"],
           ["G", "H", "I"]]
-table2 = [["A", "B", "C", "D"],
-          ["E", "F", "G", "H"],
-          ["I", "J", "K", "L"]]
+table2 = [["A", "B", "C", "E"],
+          ["S", "F", "C", "S"],
+          ["A", "D", "E", "E"]]
 # table 1 (true: ADGHIFCBA)
 # table 2 (false: ADEFH)
 # table 2 (true: ABFGH)
 # table 2 (false: ABFJG)
-result = sol.exist(table1, "ADEFH")
+result = sol.exist(table2, "ABCCED")
 print("Result:", result)
